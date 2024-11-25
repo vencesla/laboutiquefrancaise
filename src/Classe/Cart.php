@@ -112,7 +112,8 @@ class Cart {
         }
 
         foreach($cart as $product) {
-            $price = $price +($product['object']->getPrice() * $product['qty']);
+            $coeff = 1 + ($product['object']->getTva() / 100);
+            $price += ($product['object']->getPrice() * $coeff) * $product['qty'];
         }
         return $price;
     }
